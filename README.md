@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Majestic Thai
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A "client" has approached you and asked you to help them build a web presence. They are a local Thai restaurant called Majestic Thai. They don't know anything
+about the Internet, but they know they need a web page. They want an interactive menu that displays all of their food choices with prices, descriptions, etc.
+They also want the customer to be able to select menu items and create an order with a total price. When the user saves the order, it should create a new item
+on the backend (we're using localStorage for this assignment) so that the kitchen can process the order.
 
-## Available Scripts
+## Objectives
 
-In the project directory, you can run:
+### Learning Objectives
 
-### `npm start`
+After completing this assignment, you should:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Understand how to design and execute a front end application given ambiguous requirements by a client
+- Understand how React work to create a dynamic frontend application
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Performance Objectives
 
-### `npm test`
+After completing this assignment, you should be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Create wireframes and a outline of objects needed as part of the planning process when making a complex front end application
+- Execute client requirements to make a complete application
 
-### `npm run build`
+## Details
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Deliverables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* A repo containing a frontend project built with create-react-app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## I'm a Full Stack Developer Mode
 
-### `npm run eject`
+### Tasks
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Getting Started (Thinking in React: Mock + Step 1)
+- [ ] Setup the scaffolding and install React
+- [ ] Setup a mock of the page (include the different dynamic portions of the application)
+- [ ] Produce static data for the menu items (sample JSON)
+- [ ] Produce a functional static mockup
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Menu (Thinking in React: Step 2, 3, & 4)
+- [ ] `console.log` the static JSON for the menu items
+- [ ] Render a component for each menu item according to category
+- [ ] Define a MenuItem component
+- [ ] Define a MenuList component that calls MenuItem
+- [ ] `console.log` the food object when I click on its price button
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Order view
+- [ ] Define an Order component
+- [ ] Render an instance of Order component
+- [ ] Define an order object in your application state
+- [ ] Pass the order to the Order component
+- [ ] `console.log` the order when I click on the foods price
+- [ ] Add the food object to the order
+- [ ] In Order, `console.log` the order
+- [ ] In Order, `console.log` a menu item every time it is added to the order
+- [ ] Render the data from the order every time the order is updated
+- [ ] In Order, define a `subtotal` function that calculates the total price.
+- [ ] `console.log`, then render the subtotal, every time the order is updated
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Order data
+- [ ] Save the order data to localStorage when the order is submitted
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Hey Mikey, I Think He Likes It Mode
+- [ ] Create another view that gives the owner the ability to view
+  the orders and "complete" them.
