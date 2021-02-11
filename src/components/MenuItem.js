@@ -2,9 +2,15 @@ import { Component } from 'react';
 
 
 class MenuItem extends Component {
+  // constructor(props){
+  //   super(props);
+  // }
 
-addToOrder(){
-  console.log("Hi");
+handleAdd(event){
+  // const itemIndex = event.target.dataset.index
+  // const findItem = this.state.menuItems.find(menuItems => menuItems.index === itemIndex);
+  // console.log(findItem);
+  console.log(event.target.dataset.index);
 }
 
   render() {
@@ -14,7 +20,7 @@ addToOrder(){
         <h3 className="menuItem-list-title" name="title"> {menuItem.title} </h3>
         <p className="menuItem-list-text" name="desciption" > {menuItem.desciption} </p>
         <span name="price">${menuItem.price}</span>
-        <button type="submit">Add Item</button>
+        <button type="submit" data-index={index} onClick={this.handleAdd}>Add Item</button>
         </div>
          </li>
       ))
