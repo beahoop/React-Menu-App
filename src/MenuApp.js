@@ -4,7 +4,6 @@ import MenuList from './components/MenuList.js';
 import OrderContainer from './components/OrderContainer.js';
 
 
-
 class MenuApp extends Component {
   constructor(props) {
   super(props);
@@ -12,6 +11,7 @@ class MenuApp extends Component {
     menuItems: [],
     order: [],
   }
+  this.addOrderItem = this.addOrderItem.bind(this);
 }
 
   componentDidMount(){
@@ -39,12 +39,27 @@ class MenuApp extends Component {
     this.setState({ menuItems })
   }
 
+  handleSelection(event){
+    const tag = event.target.dataset.tags;
+    const filteredlink =
+     this.state.links.filter(links => links.tags === tag);
+    this.setState({selection: filteredlink})
+    console.log(filteredlink);
+  }
+
+  addOrderItem(orderTitle){
+    const orderItem = this.state.menuItems.find(menuItems => menuItems.title === orderTitle);
+    const order = [...this.state.order, orderItem];
+    this.setState({ order })
+    console.log(order[0].price);
+    console.log({ order });
+  }
+
   render (){
     return (
       < >
       This is the App!<br/>
-    <MenuList menuItems={this.state.menuItems}/>
-    
+    <MenuList menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
       <OrderContainer />
       </>
     )
