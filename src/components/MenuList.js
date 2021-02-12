@@ -9,9 +9,9 @@ class MenuList extends Component {
   this.handleClick = this.handleClick.bind(this);
 }
   handleClick(event){
-    const itemTitle = event.target.dataset.title;
-    this.props.addOrderItem(itemTitle);
-    console.log(itemTitle);
+    // const itemTitle = event.target.dataset.title;
+    // this.props.addOrderItem(itemTitle);
+    // console.log(itemTitle);
   }
 
     render() {
@@ -32,7 +32,7 @@ class MenuList extends Component {
           <h3 className="menuItem-list-title" name="title"> {menuItem.title} </h3>
           <p className="menuItem-list-text" name="desciption" > {menuItem.desciption} </p>
           <span name="price">${menuItem.price}</span>
-          <button type="submit" data-title={menuItem.title} onClick={this.handleClick}>Add Item</button>
+          <button type="submit" data-title={menuItem.title} onClick={() => this.props.addOrderItem(menuItem)}>Add Item</button>
           </div>
            </li>
         ))

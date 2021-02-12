@@ -49,12 +49,25 @@ class MenuApp extends Component {
     this.setState({ menuItems })
   }
 
-  addOrderItem(orderTitle){
-    const orderItem = this.state.menuItems.find(menuItems => menuItems.title === orderTitle);
-    const order = [...this.state.order, orderItem];
-    this.setState({ order })
+  addOrderItem(menuItem){
+    console.log(menuItem);
+
+    const order = [...this.state.order];
+    const index = order.findIndex(orderItem => orderItem.title === menuItem.title);
+    if(index !== -1) {
+      // menuITem already is more at least 1
+      order[index].count += 1;//we added count as a key even tho it didn't exsit prior, because you can.... mdn
+        console.log(order);
+      // order is an array
+      // menuItem is an object
+    } else {
+      menuItem.count = 1;
+      order.push(menuItem);
+    }
+
+    this.setState({ order });
     // console.log(order[0].price);
-    // console.log({ order });
+    // console.log(order);
   }
 
   filterFood(event){
