@@ -17,6 +17,8 @@ class MenuApp extends Component {
   this.filterFood = this.filterFood.bind(this);
 }
 
+// menuItems.filter(menuItem => menuItem.price ).reduce()
+
   componentDidMount(){
     const menuItems = [{
       title: "The West Village Bowl ",
@@ -51,8 +53,8 @@ class MenuApp extends Component {
     const orderItem = this.state.menuItems.find(menuItems => menuItems.title === orderTitle);
     const order = [...this.state.order, orderItem];
     this.setState({ order })
-    console.log(order[0].price);
-    console.log({ order });
+    // console.log(order[0].price);
+    // console.log({ order });
   }
 
   filterFood(event){
@@ -63,15 +65,15 @@ class MenuApp extends Component {
   render (){
     const menuTypes = this.state.types.map((foodtype, index) => (
         <li key={index} className = "menuItem-item" >
-        <button type="submit" onClick={this.filterFood} data-type={foodtype}>{foodtype}</button>
+        <button type="submit" onClick={this.filterFood} data-type={foodtype}>  {foodtype} </button>
          </li>
       ))
     return (
       < >
-      This is the App!<br/>
     <ul className="menuItem-list"> { menuTypes } </ul>
+
     <MenuList foodSelection={this.state.foodSelection} menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
-      <OrderContainer />
+      <OrderContainer order={this.state.order}/>
       </>
     )
   }

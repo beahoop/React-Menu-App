@@ -15,8 +15,6 @@ class MenuList extends Component {
   }
 
     render() {
-
-
       const menuItems = this.props.menuItems
       .filter(menuItem => {
         if (this.props.foodSelection === "All") {
@@ -25,7 +23,8 @@ class MenuList extends Component {
           else {
           return menuItem.type === this.props.foodSelection
           }
-        }) //it takes a place holder... to say place in each item form the array
+        }
+        ) //it takes a place holder... to say place in each item form the array
       //now look for placeholder.type... here I am doing a truly check.
       .map((menuItem, index) => (
           <li key={index} className = "menuItem-item" >
