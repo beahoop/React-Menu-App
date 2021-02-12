@@ -3,6 +3,9 @@ import { Component } from 'react';
 class MenuList extends Component {
   constructor(props) {
   super(props);
+  this.state = {
+    selection: null,
+  }
   this.handleClick = this.handleClick.bind(this);
 }
   handleClick(event){
@@ -12,7 +15,19 @@ class MenuList extends Component {
   }
 
     render() {
-      const menuItems = this.props.menuItems.map((menuItem, index) => (
+
+
+      const menuItems = this.props.menuItems
+      .filter(menuItem => {
+        if (this.props.foodSelection === "All") {
+          return menuItem;
+        }
+          else {
+          return menuItem.type === this.props.foodSelection
+          }
+        }) //it takes a place holder... to say place in each item form the array
+      //now look for placeholder.type... here I am doing a truly check.
+      .map((menuItem, index) => (
           <li key={index} className = "menuItem-item" >
           <div className="menuItem-div">
           <h3 className="menuItem-list-title" name="title"> {menuItem.title} </h3>
@@ -23,7 +38,10 @@ class MenuList extends Component {
            </li>
         ))
         return(
+          <>
+
           <ul className="menuItem-list"> { menuItems } </ul>
+          </>
         )
       }
     }

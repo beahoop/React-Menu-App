@@ -10,8 +10,11 @@ class MenuApp extends Component {
   this.state = {
     menuItems: [],
     order: [],
+    types: ["Main", "Soup", "Dessert"],
+    foodSelection: "All",
   }
   this.addOrderItem = this.addOrderItem.bind(this);
+  this.filterFood = this.filterFood.bind(this);
 }
 
   componentDidMount(){
@@ -35,16 +38,13 @@ class MenuApp extends Component {
       desciption: "Miso broth with mushrooms, wakame seaweed and scallions. ",
       price: 12.50,
       type: "Soup",
+    },{
+      title: "Medicine Ball",
+      desciption: "Honey sweetened cacao truffle with superfoods. Made by Asheville’s Silvermoon Chocolates ",
+      price: 3.75,
+      type: "Dessert",
     }]
     this.setState({ menuItems })
-  }
-
-  handleSelection(event){
-    const tag = event.target.dataset.tags;
-    const filteredlink =
-     this.state.links.filter(links => links.tags === tag);
-    this.setState({selection: filteredlink})
-    console.log(filteredlink);
   }
 
   addOrderItem(orderTitle){
@@ -55,11 +55,22 @@ class MenuApp extends Component {
     console.log({ order });
   }
 
+  filterFood(event){
+    const foodType = event.target.dataset.type;
+    this.setState({foodSelection: foodType})
+  }
+
   render (){
+    const menuTypes = this.state.types.map((foodtype, index) => (
+        <li key={index} className = "menuItem-item" >
+        <button type="submit" onClick={this.filterFood} data-type={foodtype}>{foodtype}</button>
+         </li>
+      ))
     return (
       < >
       This is the App!<br/>
-    <MenuList menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
+    <ul className="menuItem-list"> { menuTypes } </ul>
+    <MenuList foodSelection={this.state.foodSelection} menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
       <OrderContainer />
       </>
     )
