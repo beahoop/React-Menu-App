@@ -14,6 +14,7 @@ class MenuApp extends Component {
     foodSelection: "All",
   }
   this.removeOrderItem = this.removeOrderItem.bind(this);
+  this.minusOrderItem = this.minusOrderItem.bind(this);
   this.addOrderItem = this.addOrderItem.bind(this);
   this.filterFood = this.filterFood.bind(this);
 }
@@ -68,27 +69,30 @@ class MenuApp extends Component {
     // console.log(order[0].price);
     // console.log(order);
   }
-
   removeOrderItem(menuItem){
-    console.log(menuItem);
+    const order = [...this.state.order];
+      console.log("hi");
+    const index = order.indexOf(menuItem); //will give you the index of an array
+    //you can use findDex()
+    order.splice(index, 1);//give you the index and take that one item
+    this.setState({ order })
+      console.log({ order });
+  }
 
+minusOrderItem(menuItem){
+    console.log(menuItem);
     const order = [...this.state.order];
     const index = order.findIndex(orderItem => orderItem.title === menuItem.title);
     if(index !== -1) {
-      // menuITem already is more at least 1
-      order[index].count -= 1;//we added count as a key even tho it didn't exsit prior, because you can.... mdn
+      order[index].count -= 1;
         console.log(order);
-      // order is an array
-      // menuItem is an object
     } else {
       menuItem.count = 0;
       order.push(menuItem);
     }
-
     this.setState({ order });
-    // console.log(order[0].price);
-    // console.log(order);
   }
+
 
   filterFood(event){
     const foodType = event.target.dataset.type;
@@ -106,7 +110,8 @@ class MenuApp extends Component {
     <ul className="menuItem-nav"> { menuTypes } </ul>
 
     <MenuList foodSelection={this.state.foodSelection} menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
-      <OrderContainer menuItems={this.state.menuItems} addOrderItem={this.addOrderItem} removeOrderItem={this.removeOrderItem} order={this.state.order}/>
+      <OrderContainer menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}
+        removeOrderItem={this.removeOrderItem} minusOrderItem={this.minusOrderItem} order={this.state.order}/>
       </>
     )
   }

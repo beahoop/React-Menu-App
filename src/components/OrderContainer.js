@@ -44,15 +44,7 @@ handleStepUp(event){
 // const total = [...this.state.total, subtotal]
 // console.log("price", price, "subtotal", subtotal);
 }
-// removeItem(item){
-//   const order = [...this.props.order];
-//   const index = order.indexOf(item);
-//   order.splice(index, 1);
-//   console.log(order.count);
-//   order.count = (order.count - 1);
-//   this.setState({ order });
-//   console.log(order);
-// }
+
 
 // handleClick(){
 //   // const itemTitle = event.target.dataset.title;
@@ -78,24 +70,16 @@ handleStepUp(event){
     const orderItems = this.props.order
     .map((orderItem, index) => (
 
-
         <li key={index} className = "orderItem-item" >
         <div className="orderItem-div">
         <h3 className="orderItem-list-title" name="title"> {orderItem.title} </h3>
         <p className="orderItem-list-text" name="desciption" > {orderItem.desciption} </p>
         <span name="price">${orderItem.price}</span>
 
-      <button type="submit" data-title={orderItem.title} onClick={() => this.props.removeOrderItem(orderItem)}>-</button>
-{ orderItem.count >= 1
-  ?  <span > {orderItem.count} </span>
-  :
-  <span></span>
-}
-
-
+      <button type="submit" data-title={orderItem.title} onClick={() => this.props.minusOrderItem(orderItem)}>-</button>
+      <span > {orderItem.count} </span>
         <button type="submit" data-title={orderItem.title} onClick={() => this.props.addOrderItem(orderItem)}>+</button>
-
-
+        <button type="submit" onClick={() => this.props.removeOrderItem(orderItem)}> Remove </button>
         </div>
          </li>
       ))
