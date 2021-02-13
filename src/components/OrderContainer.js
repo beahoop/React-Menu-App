@@ -76,10 +76,21 @@ handleStepUp(event){
         <p className="orderItem-list-text" name="desciption" > {orderItem.desciption} </p>
         <span name="price">${orderItem.price}</span>
 
-      <button type="submit" data-title={orderItem.title} onClick={() => this.props.minusOrderItem(orderItem)}>-</button>
-      <span > {orderItem.count} </span>
+      <button type="submit" data-title={orderItem.title} onClick={() => {
+          if(orderItem.count > 1){
+            this.props.minusOrderItem(orderItem)
+          }
+          else {
+            this.props.removeOrderItem(orderItem)
+          }
+        }
+      }>-</button>
+
+          <span > {orderItem.count} </span>
+
+
         <button type="submit" data-title={orderItem.title} onClick={() => this.props.addOrderItem(orderItem)}>+</button>
-        <button type="submit" onClick={() => this.props.removeOrderItem(orderItem)}> Remove </button>
+        <button type="submit" onClick={() => this.props.removeOrderItem(orderItem)}> Remove</button>
         </div>
          </li>
       ))
