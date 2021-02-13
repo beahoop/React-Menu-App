@@ -10,7 +10,7 @@ class OrderContainer extends Component {
   this.handleSubmit = this.handleSubmit.bind(this);
   this.handleInput = this.handleInput.bind(this);
   this.handleStepUp = this.handleStepUp.bind(this);
-  this.removeItem = this.removeItem.bind(this);
+
   }
 
 handleSubmit(event){
@@ -44,15 +44,15 @@ handleStepUp(event){
 // const total = [...this.state.total, subtotal]
 // console.log("price", price, "subtotal", subtotal);
 }
-removeItem(item){
-  const order = [...this.props.order];
-  const index = order.indexOf(item);
-  order.splice(index, 1);
-  console.log(order.count);
-  order.count = (order.count - 1);
-  this.setState({ order });
-  console.log(order);
-}
+// removeItem(item){
+//   const order = [...this.props.order];
+//   const index = order.indexOf(item);
+//   order.splice(index, 1);
+//   console.log(order.count);
+//   order.count = (order.count - 1);
+//   this.setState({ order });
+//   console.log(order);
+// }
 
 // handleClick(){
 //   // const itemTitle = event.target.dataset.title;
@@ -77,19 +77,25 @@ removeItem(item){
 
     const orderItems = this.props.order
     .map((orderItem, index) => (
+
+
         <li key={index} className = "orderItem-item" >
         <div className="orderItem-div">
         <h3 className="orderItem-list-title" name="title"> {orderItem.title} </h3>
         <p className="orderItem-list-text" name="desciption" > {orderItem.desciption} </p>
         <span name="price">${orderItem.price}</span>
 
-        <p>{orderItem.count}count</p>
+      <button type="submit" data-title={orderItem.title} onClick={() => this.props.removeOrderItem(orderItem)}>-</button>
+{ orderItem.count >= 1
+  ?  <span > {orderItem.count} </span>
+  :
+  <span></span>
+}
+
 
         <button type="submit" data-title={orderItem.title} onClick={() => this.props.addOrderItem(orderItem)}>+</button>
 
 
-        <button>Edit</button>
-        <button type="button" onClick={()=> this.removeItem(orderItem)}>Remove</button>
         </div>
          </li>
       ))
