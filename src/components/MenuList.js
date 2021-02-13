@@ -6,13 +6,8 @@ class MenuList extends Component {
   this.state = {
     selection: null,
   }
-  this.handleClick = this.handleClick.bind(this);
 }
-  handleClick(event){
-    // const itemTitle = event.target.dataset.title;
-    // this.props.addOrderItem(itemTitle);
-    // console.log(itemTitle);
-  }
+
 
     render() {
       const menuItems = this.props.menuItems

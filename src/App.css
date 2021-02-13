@@ -1,0 +1,21 @@
+.nav {
+  width: 100%;
+  background-color: red;
+}
+.menuItem-nav, .nav-Item {
+  list-style: none;
+  display: inline;
+  padding: 0px;
+
+}
+.menuItem-nav {
+  width: 100%;
+}
+
+.nav-button {
+  border: 0;
+  padding: 10px;
+}
+.nav-button:hover {
+  opacity: .5;
+}

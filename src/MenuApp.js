@@ -77,16 +77,16 @@ class MenuApp extends Component {
 
   render (){
     const menuTypes = this.state.types.map((foodtype, index) => (
-        <li key={index} className = "menuItem-item" >
-        <button type="submit" onClick={this.filterFood} data-type={foodtype}>  {foodtype} </button>
+        <li key={index} className = "nav-Item" >
+        <button className="nav-button" type="submit" onClick={this.filterFood} data-type={foodtype}>  {foodtype} </button>
          </li>
       ))
     return (
       < >
-    <ul className="menuItem-list"> { menuTypes } </ul>
+    <ul className="menuItem-nav"> { menuTypes } </ul>
 
     <MenuList foodSelection={this.state.foodSelection} menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
-      <OrderContainer order={this.state.order}/>
+      <OrderContainer menuItems={this.state.menuItems} addOrderItem={this.addOrderItem} order={this.state.order}/>
       </>
     )
   }

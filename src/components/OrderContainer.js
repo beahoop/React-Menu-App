@@ -1,21 +1,27 @@
 import { Component } from 'react';
 
-
-
 class OrderContainer extends Component {
   constructor(props) {
   super(props);
   this.state = {
     text: "",
   }
+
   this.handleSubmit = this.handleSubmit.bind(this);
   this.handleInput = this.handleInput.bind(this);
+  this.handleStepUp = this.handleStepUp.bind(this);
+  this.removeItem = this.removeItem.bind(this);
   }
+
 handleSubmit(event){
   event.preventDefault();
-  const name = [...this.state.text]
-  name.push(event);
-  this.setState({ name })
+  const order = {
+    name: this.state.text,
+    order: [...this.props.order]
+  }
+  console.log('order', order);
+  localStorage.setItem("order", JSON.stringify(order));
+  alert(`Thank you ${this.state.text}! Your ${this.props.orders}`);
 }
 
 //if thse things already exsit then add a number to it not
@@ -25,6 +31,37 @@ handleInput(event){
   this.setState({ [event.target.name]: event.target.value });
   //event.target.name is targeting the name="text" on the input
 }
+// <input type="number"  value={orderItem.count} step="1" onChange={this.handleStepUp}></input>
+handleStepUp(event){
+  //if step up is selected then add another to order.count
+// const input = event.target;
+// let value = event.target.value;
+// const price = event.target.dataset.price;
+// const subtotal =  value * price;
+
+// this.props.addOrderItem();
+// value * price - presubtotal;
+// const total = [...this.state.total, subtotal]
+// console.log("price", price, "subtotal", subtotal);
+}
+removeItem(item){
+  const order = [...this.props.order];
+  const index = order.indexOf(item);
+  order.splice(index, 1);
+  console.log(order.count);
+  order.count = (order.count - 1);
+  this.setState({ order });
+  console.log(order);
+}
+
+// handleClick(){
+//   // const itemTitle = event.target.dataset.title;
+//   this.props.addOrderItem(itemTitle);
+//
+//   console.log("order-count", this.props.order[0].count);
+//   // console.log(itemTitle);
+// }
+
 
   render() {
 
@@ -37,6 +74,7 @@ handleInput(event){
     const total = this.props.order.map(orderItem => orderItem.price * orderItem.count).reduce(reducer,0)
     console.log(total);
 
+
     const orderItems = this.props.order
     .map((orderItem, index) => (
         <li key={index} className = "orderItem-item" >
@@ -44,15 +82,19 @@ handleInput(event){
         <h3 className="orderItem-list-title" name="title"> {orderItem.title} </h3>
         <p className="orderItem-list-text" name="desciption" > {orderItem.desciption} </p>
         <span name="price">${orderItem.price}</span>
-        <p>{orderItem.count}</p>
+
+        <p>{orderItem.count}count</p>
+
+        <button type="submit" data-title={orderItem.title} onClick={() => this.props.addOrderItem(orderItem)}>+</button>
+
+
         <button>Edit</button>
-        <button>Delete</button>
+        <button type="button" onClick={()=> this.removeItem(orderItem)}>Remove</button>
         </div>
          </li>
       ))
       return(
         <>
-
         <div>ORDER LIST</div>
         <ul className="menuItem-list"> { orderItems } </ul>
         <div>TOTAL{ total }</div>
