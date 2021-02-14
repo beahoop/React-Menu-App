@@ -4,13 +4,14 @@ import MenuList from './components/MenuList.js';
 import OrderContainer from './components/OrderContainer.js';
 
 
+
 class MenuApp extends Component {
   constructor(props) {
   super(props);
   this.state = {
     menuItems: [],
     order: [],
-    types: ["Main", "Soup", "Dessert"],
+    types: ["All", "Main", "Soup", "Tea", "Dessert"],
     foodSelection: "All",
   }
   this.removeOrderItem = this.removeOrderItem.bind(this);
@@ -23,6 +24,26 @@ class MenuApp extends Component {
 
   componentDidMount(){
     const menuItems = [{
+      title: "Forest Dragon",
+      desciption: "Japanese matcha ad Chinese jasmine green tea with added mint, rice milk cardamom and honey",
+      price: 5.25,
+      type: "Tea",
+    },{
+      title: "Taiwanese Bubble Tea",
+      desciption: "Tapioca bubbles with your choice of tea and your choice of milk",
+      price: 5.25,
+      type: "Tea",
+    },{
+      title: "The Golden Ticket",
+      desciption: "A golden milk infusion of organic turmeric root, goji berry, coconut butter, all spice & rainbow pepper.Made with coconut, oat, or whole milk & local honey.",
+      price: 5.00,
+      type: "Tea",
+    },{
+      title: "Japanese Hotcha",
+      desciption: "Organic Japanese matcha green tea simmered in your choice of milk, sweetened with local honey. ",
+      price: 4.00,
+      type: "Tea",
+    },{
       title: "The West Village Bowl ",
       desciption: "Jasmine rice coated with your choice of tahini or peanut sauce sprinkled with toasted seeds and garnished with baby kale, shiitake mushrooms, beets, daikon, and kimchi.",
       price: 12.50,
@@ -38,10 +59,20 @@ class MenuApp extends Component {
       price: 12.50,
       type: "Soup"
     },{
-      title: "Miso Ramen ",
-      desciption: "Miso broth with mushrooms, wakame seaweed and scallions. ",
+      title: "Medicine Ball",
+      desciption: "Honey sweetened cacao truffle with superfoods. Made by Asheville’s Silvermoon Chocolates ",
+      price: 3.75,
+      type: "Dessert",
+    } ,{
+      title: "Ayurvedic Kitchari ",
+      desciption: "Tridoshic turmeric-based mung dahl and basmati rice porridge with squash & carrots, garnished with apple chutney, raisins, and green onions. Choice of coconut oil (vegan option) or Happy Cow ghee",
+      price: 9.50,
+      type: "Main",
+    },{
+      title: "Spicy Tan Tan Ramen ",
+      desciption: "Sesame, coconut, soy-based veggie broth with chili oil, topped with grilled corn, bamboo shoots, mushrooms, and green onions. Let your server know your preferred level of spice.",
       price: 12.50,
-      type: "Soup",
+      type: "Soup"
     },{
       title: "Medicine Ball",
       desciption: "Honey sweetened cacao truffle with superfoods. Made by Asheville’s Silvermoon Chocolates ",
@@ -64,19 +95,13 @@ class MenuApp extends Component {
       menuItem.count = 1;
       order.push(menuItem);
     }
-
     this.setState({ order });
-    // console.log(order[0].price);
-    // console.log(order);
   }
   removeOrderItem(menuItem){
     const order = [...this.state.order];
-      console.log("hi");
-    const index = order.indexOf(menuItem); //will give you the index of an array
-    //you can use findDex()
-    order.splice(index, 1);//give you the index and take that one item
-    this.setState({ order })
-      console.log({ order });
+    const index = order.indexOf(menuItem);
+    order.splice(index, 1);
+    this.setState({ order });
   }
 
 minusOrderItem(menuItem){
@@ -100,19 +125,87 @@ minusOrderItem(menuItem){
   }
 
   render (){
+    const reducer = (totalPrice, currentPrice)=> totalPrice + currentPrice;
+    const total = this.state.order.map(orderItem => orderItem.price * orderItem.count).reduce(reducer,0).toFixed(2)
+
     const menuTypes = this.state.types.map((foodtype, index) => (
+
         <li key={index} className = "nav-Item" >
-        <button className="nav-button" type="submit" onClick={this.filterFood} data-type={foodtype}>  {foodtype} </button>
+        <button className="nav-button" onClick={this.filterFood} data-type={foodtype}>  {foodtype} </button>
          </li>
       ))
     return (
-      < >
-    <ul className="menuItem-nav"> { menuTypes } </ul>
+      <>
 
+      <ul className="menuItem-nav">
+<li>  <img onClick={this.filterFood} data-type="All" className="logo" src="https://images.squarespace-cdn.com/content/5cf962b426cecf0001f6c8b2/1559852836171-435VB9C0EHU5SNSNWFLL/dobra-logo.png?content-type=image%2Fpng" alt=""/> </li>
+        { menuTypes }
+        { this.state.order.length === 0
+          ?
+          <li className = "nav-Item"><button className="nav-button" onClick={this.filterFood} data-type="Cart">Cart </button></li>
+          :
+          <li className = "nav-Item"><button className="nav-button" onClick={this.filterFood} data-type="Cart">Cart ${ total } </button></li>
+        }
+
+      </ul>
+      <div className="imagecontainer">
+        {
+          this.state.foodSelection === "All"
+          ?
+          <div className="imageheader" onClick={this.filterFood} data-type="All">
+            </div>
+          :
+          null
+        }
+        {this.state.foodSelection === "Main"
+          ?
+          <div className="mainheader" onClick={this.filterFood} data-type="Main">
+            </div>
+          :
+          null
+        }
+        {this.state.foodSelection === "Dessert"
+          ?
+          <div className="dessertheader" onClick={this.filterFood} data-type="Dessert">
+            </div>
+          :
+          null
+        }
+        {this.state.foodSelection === "Soup"
+          ?
+          <div className="soupheader" onClick={this.filterFood} data-type="Soup">
+            </div>
+          :
+          null
+        }
+        {this.state.foodSelection === "Cart"
+          ?
+          <div className="cartheader" onClick={this.filterFood} data-type="Cart">
+            </div>
+          :
+          null
+        }
+        {this.state.foodSelection === "Tea"
+          ?
+          <div className="teaheader" onClick={this.filterFood} data-type="Tea">
+            </div>
+          :
+          null
+        }
+
+
+      </div>
+<div className="container" >
     <MenuList foodSelection={this.state.foodSelection} menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}/>
-      <OrderContainer menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}
+    { this.state.foodSelection === "Cart"
+      ?<OrderContainer menuItems={this.state.menuItems} addOrderItem={this.addOrderItem}
         removeOrderItem={this.removeOrderItem} minusOrderItem={this.minusOrderItem} order={this.state.order}/>
-      </>
+      :
+      null
+    }
+
+    </div>
+    </>
     )
   }
 }

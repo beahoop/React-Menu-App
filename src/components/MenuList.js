@@ -24,18 +24,24 @@ class MenuList extends Component {
       .map((menuItem, index) => (
           <li key={index} className = "menuItem-item" >
           <div className="menuItem-div">
-          <h3 className="menuItem-list-title" name="title"> {menuItem.title} </h3>
-          <p className="menuItem-list-text" name="desciption" > {menuItem.desciption} </p>
-          <span name="price">${menuItem.price}</span>
-          <button type="submit" data-title={menuItem.title} onClick={() => this.props.addOrderItem(menuItem)}>Add Item</button>
+          <p className="menuList-title" name="title"> {menuItem.title} </p>
+          <p className="menuList-desc" name="desciption" > {menuItem.desciption} </p>
+            <span className="menuList-price" name="price">${menuItem.price.toFixed(2)}</span>
+            <button type="submit" data-title={menuItem.title} onClick={() => this.props.addOrderItem(menuItem)}>Add</button>
+
+
           </div>
            </li>
         ))
         return(
           <>
 
-          <ul className="menuItem-list"> { menuItems } </ul>
-          </>
+          <ul className="menuItem-list"> { menuItems }
+
+          </ul>
+
+
+        </>
         )
       }
     }

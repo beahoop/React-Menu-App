@@ -5,7 +5,7 @@ import MenuApp from './MenuApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode >
     <MenuApp />
   </React.StrictMode>,
   document.getElementById('root')
