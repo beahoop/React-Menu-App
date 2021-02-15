@@ -3,8 +3,6 @@ import './App.css';
 import MenuList from './components/MenuList.js';
 import OrderContainer from './components/OrderContainer.js';
 
-
-
 class MenuApp extends Component {
   constructor(props) {
   super(props);
@@ -44,6 +42,11 @@ class MenuApp extends Component {
       price: 4.00,
       type: "Tea",
     },{
+      title: "Tempeh Banh Mi",
+      desciption: "Smiling Hara tempeh marinated then grilled with gluten free bread dressed with sriracha mayo, cucumber, cilantro, carrot-daikon pickle, & baby kale. ",
+      price: 9.75,
+      type: "Main",
+    },{
       title: "The West Village Bowl ",
       desciption: "Jasmine rice coated with your choice of tahini or peanut sauce sprinkled with toasted seeds and garnished with baby kale, shiitake mushrooms, beets, daikon, and kimchi.",
       price: 12.50,
@@ -54,26 +57,26 @@ class MenuApp extends Component {
       price: 9.50,
       type: "Main",
     },{
-      title: "Spicy Tan Tan Ramen ",
-      desciption: "Sesame, coconut, soy-based veggie broth with chili oil, topped with grilled corn, bamboo shoots, mushrooms, and green onions. Let your server know your preferred level of spice.",
+      title: "Spicy Tan Tan Ramen",
+      desciption: "Sesame, coconut, soy-based veggie broth with chili oil, topped with grilled corn, bamboo shoots, mushrooms, and green onions. Let your server know your preferred level of spice. ",
       price: 12.50,
-      type: "Soup"
+      type: "Soup",
     },{
-      title: "Medicine Ball",
-      desciption: "Honey sweetened cacao truffle with superfoods. Made by Asheville’s Silvermoon Chocolates ",
-      price: 3.75,
+      title: "Miso Ramen",
+      desciption: "Miso broth with mushrooms, wakame seaweed and scallions. ",
+      price: 12.50,
+      type: "Soup",
+    },{
+      title: "Japanese Miso",
+      desciption: "Sweet white organic broth with mushrooms & wakame seaweed topped with scallions. ",
+      price: 9.00,
+      type: "Soup",
+    },{
+      title: "Oatmeal Cream Pie ",
+      desciption: "Sweetened with cane sugar. Contains dairy & eggs",
+      price: 4.00,
       type: "Dessert",
     } ,{
-      title: "Ayurvedic Kitchari ",
-      desciption: "Tridoshic turmeric-based mung dahl and basmati rice porridge with squash & carrots, garnished with apple chutney, raisins, and green onions. Choice of coconut oil (vegan option) or Happy Cow ghee",
-      price: 9.50,
-      type: "Main",
-    },{
-      title: "Spicy Tan Tan Ramen ",
-      desciption: "Sesame, coconut, soy-based veggie broth with chili oil, topped with grilled corn, bamboo shoots, mushrooms, and green onions. Let your server know your preferred level of spice.",
-      price: 12.50,
-      type: "Soup"
-    },{
       title: "Medicine Ball",
       desciption: "Honey sweetened cacao truffle with superfoods. Made by Asheville’s Silvermoon Chocolates ",
       price: 3.75,
@@ -97,6 +100,7 @@ class MenuApp extends Component {
     }
     this.setState({ order });
   }
+
   removeOrderItem(menuItem){
     const order = [...this.state.order];
     const index = order.indexOf(menuItem);
@@ -142,9 +146,9 @@ minusOrderItem(menuItem){
         { menuTypes }
         { this.state.order.length === 0
           ?
-          <li className = "nav-Item"><button className="nav-button" onClick={this.filterFood} data-type="Cart">Cart </button></li>
+          <li className = "nav-Item"><button className="nav-button cart" onClick={this.filterFood} data-type="Cart">Cart </button></li>
           :
-          <li className = "nav-Item"><button className="nav-button" onClick={this.filterFood} data-type="Cart">Cart ${ total } </button></li>
+          <li className = "nav-Item"><button className="nav-button cart" onClick={this.filterFood} data-type="Cart">Cart ${ total } </button></li>
         }
 
       </ul>
